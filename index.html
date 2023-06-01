@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+
+   <style>
+        /* External CSS */
+
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 768px) {
+  h1 {
+    font-size: 28px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}
+
+/* Navigation Styles */
+nav {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 5px;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #f1f1f1;
+}
+
+/* Button Styles */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 20px;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Add more styles as needed */
+
+    </style>
+</head>
+
+<body>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script>
+        window.setInterval(function () {
+            var dt = new Date();
+            var currentHours = dt.getHours();
+            currentHours = ("0" + currentHours).slice(-2);
+            var currentMinutes = dt.getMinutes();
+            currentMinutes = ("0" + currentMinutes).slice(-2);
+            var currentSeconds = dt.getSeconds();
+            currentSeconds = ("0" + currentSeconds).slice(-2);
+            var time = currentHours + ":" + currentMinutes + ":" + currentSeconds;
+            document.getElementById("time").innerHTML = dt.toLocaleDateString() + " , " + time;
+        }, 1000);
+
+        function fetchData(v) {
+            // Implement the logic for fetching data here using AJAX or any other method.
+            // Call the onSuccess and onFailure functions based on the result.
+        }
+
+        function onSuccess(val) {
+            // Implement the logic to handle a successful response here.
+            debugger;
+            $("#divDetails").html(val);
+            $('#myModal').modal('show');
+        }
+
+        function onFailure(val) {
+            // Implement the logic to handle a failed response here.
+            alert(val);
+        }
+    </script>
+
+<div class="dashboard-wrapper">
+    <div class="dashboard-ecommerce">
+        <div class="container-fluid dashboard-content">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-header">
+                        <h2 class="pageheader-title">Dashboard
+                            <span class="fa-pull-right" id="time" style="font-size: 18px;"></span>
+                        </h2>
+                        <div class="page-breadcrumb">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="Dashboard.aspx"
+                                            class="breadcrumb-link">Dashboard</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Main Dashboard</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ecommerce-widget">
+                <h3 class="card-header" style="background-color: darkgray">Dashboard</h3>
+                <div class="row">
+                    <div class="form-group col-12">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-body" style="background-color: #ccccff">
+                                <h5 class="text-dark">Copyright :</h5>
+                                <div class="metric-value d-inline-block vl">
+
+                                    <span runat="server">Previous Month:</span>
+                                    <h1 class="mb-1 text-primary" id="prevCopyright" runat="server" onclick=""></h1>
+                                </div>
+
+                                <div class="metric-value d-inline-block vl">
+
+                                    <span runat="server">Current Month:</span>
+                                    <h1 class="mb-1 text-primary" id="currCopyright" runat="server" onclick=""></h1>
+                                </div>
+                                <div class="metric-value d-inline-block vl">
+                                    <span>Total Count:</span>
+                                    <h1 class="mb-1 text-primary" id="totalCopyright" runat="server"
+                                        onclick="fetchData(1)"></h1>
+
+                                </div>
+                                <div class="metric-label d-inline-block float-right text-success">
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div id="sparkline-1"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-body" style="background-color: #ccebff">
+                                <h5 class="text-dark">Design :</h5>
+
+                                <div class="metric-value d-inline-block vl">
+
+                                    <span runat="server">Previous Month:</span>
+                                    <h1 class="mb-1 text-primary" id="prevDesign" runat="server" onclick=""></h1>
+                                </div>
+                                <div class="metric-value d-inline-block vl">
+
+                                    <span runat="server">Current Month:</span>
+                                    <h1 class="mb-1 text-primary" id="currDesign" runat="server" onclick=""></h1>
+                                </div>
+
+                                <div class="metric-value d-inline-block vl">
+                                    <span runat="server">Total Count:</span>
+                                    <h1 class="mb-1 text-primary" id="totalDesign" runat="server"
+                                        onclick="fetchData(2)"></h1>
+
+                                </div>
+                                <div class="metric-label d-inline-block float-right text-danger">
+                                    <span id="toPlan" runat="server"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-body" style="background-color: #ccccff">
+                                <h5 class="text-dark">Patent :</h5>
+                                <div class="metric-value d-inline-block vl">
+                                    <span runat="server">Previous Month:</span>
+                                    <h1 class="mb-1 text-primary" id="prevPatent" runat="server" onclick=""></h1>
+                                </div>
+                                <div class="metric-value d-inline-block vl">
+
+                                    <span runat="server">Current Month:</span>
+                                    <h1 class="mb-1 text-primary" id="currPatent" runat="server" onclick=""></h1>
+                                </div>
+
+                                <div class="metric-value d-inline-block vl">
+                                    <span runat="server">Total Count:</span>
+                                    <h1 class="mb-1 text-primary" id="totalPatent" runat="server"
+                                        onclick="fetchData(4)"></h1>
+                                </div>
+                                <div class="metric-label d-inline-block float-right text-danger">
+                                    <span id="toProd" runat="server"></span>
+                                </div>
+                            </div>
+                            <div id="sparkline-3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-body" style="background-color: #ccebff">
+                                <h5 class="text-dark">Trademark :</h5>
+                                <div class="metric-value d-inline-block vl">
+
+                                    <span runat="server">Previous Month:</span>
+                                    <h1 class="mb-1 text-primary" id="prevTrademark" runat="server" onclick=""></h1>
+                                </div>
+                                <div class="metric-value d-inline-block vl">
+
+                                    <span runat="server">Current Month:</span>
+                                    <h1 class="mb-1 text-primary" id="currTrademark" runat="server" onclick=""></h1>
+                                </div>
+
+                                <div class="metric-value d-inline-block vl">
+                                    <span runat="server">Total Count:</span>
+                                    <h1 class="mb-1 text-primary" id="totalTrademark" runat="server"
+                                        onclick="fetchData(5)"></h1>
+                                </div>
+                                <div class="metric-label d-inline-block float-right text-success">
+                                    <span id="statusP" runat="server"></span>
+                                </div>
+                            </div>
+                            <div id="sparkline-4"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ecommerce-widget">
+                    <h3 class="card-header" style="background-color:darkgray">Dashboard</h3>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-body" style="background-color: #ccccff">
+                                    <h5 class="text-dark">Deadline :</h5>
+                                    <div class="metric-value d-inline-block vl">
+
+                                        <span runat="server">Previous Month:</span>
+                                        <h1 class="mb-1 text-primary" id="prevDeadline" runat="server" onclick="">
+                                        </h1>
+                                    </div>
+                                    <div class="metric-value d-inline-block vl">
+
+                                        <span runat="server">Current Month:</span>
+                                        <h1 class="mb-1 text-primary" id="currDeadline" runat="server" onclick="">
+                                        </h1>
+                                    </div>
+
+                                    <div class="metric-value d-inline-block vl">
+                                        <span runat="server">Total Count:</span>
+                                        <h1 class="mb-1 text-primary" id="totalDeadline" runat="server"
+                                            onclick="fetchData(1)"></h1>
+                                    </div>
+                                    <div class="metric-label d-inline-block float-right text-success">
+                                        <span></span>
+                                    </div>
+                                </div>
+                                <div id="sparkline-2"></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-body" style="background-color: #ccebff">
+                                    <h5 class="text-dark">Status :</h5>
+                                    <div class="metric-value d-inline-block vl">
+
+                                        <span runat="server">Previous Month:</span>
+                                        <h1 class="mb-1 text-primary" id="prevStatus" runat="server" onclick="">
+                                        </h1>
+                                    </div>
+                                    <div class="metric-value d-inline-block vl">
+
+                                        <span runat="server">Current Month:</span>
+                                        <h1 class="mb-1 text-primary" id="currStatus" runat="server" onclick="">
+                                        </h1>
+                                    </div>
+
+                                    <div class="metric-value d-inline-block vl">
+                                        <span runat="server">Total Count:</span>
+                                        <h1 class="mb-1 text-primary" id="totalStatus" runat="server"
+                                            onclick="fetchData(1)"></h1>
+                                    </div>
+                                    <div class="metric-label d-inline-block float-right text-danger">
+                                        <span id="Span1" runat="server"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-body" style="background-color: #ccccff">
+                                    <h5 class="text-dark">File :</h5>
+                                    <div class="metric-value d-inline-block vl">
+
+                                        <span runat="server">Previous Month:</span>
+                                        <h1 class="mb-1 text-primary" id="prevFiles" runat="server" onclick=""></h1>
+                                    </div>
+                                    <div class="metric-value d-inline-block vl">
+
+                                        <span runat="server">Current Month:</span>
+                                        <h1 class="mb-1 text-primary" id="currFiles" runat="server" onclick=""></h1>
+                                    </div>
+
+                                    <div class="metric-value d-inline-block vl">
+                                        <span runat="server">Total Count:</span>
+                                        <h1 class="mb-1 text-primary" id="totalFiles" runat="server"
+                                            onclick="fetchData(3)"></h1>
+                                    </div>
+
+                                    <div class="metric-label d-inline-block float-right text-danger">
+                                        <span id="Span2" runat="server"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-body" style="background-color: #ccebff">
+                                    <h5 class="text-dark">Invention :</h5>
+                                    <div class="metric-value d-inline-block vl">
+
+                                        <span runat="server">Previous Month:</span>
+                                        <h1 class="mb-1 text-primary" id="prevInvention" runat="server" onclick="">
+                                        </h1>
+                                    </div>
+                                    <div class="metric-value d-inline-block vl">
+
+                                        <span runat="server">Current Month:</span>
+                                        <h1 class="mb-1 text-primary" id="currInvention" runat="server" onclick="">
+                                        </h1>
+                                    </div>
+
+                                    <div class="metric-value d-inline-block vl">
+                                        <span runat="server">Total Count:</span>
+                                        <h1 class="mb-1 text-primary" id="totalInvention" runat="server"
+                                            onclick="fetchData(1)"></h1>
+                                    </div>
+                                    <div class="metric-label d-inline-block float-right text-danger">
+                                        <span id="Span3" runat="server"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-body" style="background-color: #ccccff">
+                                    <h5 class="text-dark">TT Record :</h5>
+                                    <div class="metric-value d-inline-block vl">
+
+                                        <span runat="server">Previous Month:</span>
+                                        <h1 class="mb-1 text-primary" id="prevTTRecord" runat="server" onclick="">
+                                        </h1>
+                                    </div>
+                                    <div class="metric-value d-inline-block vl">
+
+                                        <span runat="server">Current Month:</span>
+                                        <h1 class="mb-1 text-primary" id="currTTRecord" runat="server" onclick="">
+                                        </h1>
+                                    </div>
+
+                                    <div class="metric-value d-inline-block vl">
+                                        <span runat="server">Total Count:</span>
+                                        <h1 class="mb-1 text-primary" id="totalTTRecord" runat="server"
+                                            onclick="fetchData(1)"></h1>
+                                    </div>
+                                    <div class="metric-label d-inline-block float-right text-danger">
+                                        <span id="Span4" runat="server"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="small-box bg-secondary">
+                                <div class="card">
+                                    <div class="card-body" style="background-color: #ccebff">
+                                        <h5 class="text-dark">Agreement :</h5>
+                                        <div class="metric-value d-inline-block vl">
+
+                                            <span runat="server">Previous Month:</span>
+                                            <h1 class="mb-1 text-primary" id="prevAgreement" runat="server"
+                                                onclick=""></h1>
+                                        </div>
+                                        <div class="metric-value d-inline-block vl">
+
+                                            <span runat="server">Current Month:</span>
+                                            <h1 class="mb-1 text-primary" id="currAgreement" runat="server"
+                                                onclick=""></h1>
+                                        </div>
+
+                                        <div class="metric-value d-inline-block vl">
+                                            <span runat="server">Total Count:</span>
+                                            <h1 class="mb-1 text-primary" id="totalAgreement" runat="server"
+                                                onclick="fetchData(1)"></h1>
+                                        </div>
+                                        <div class="metric-label d-inline-block float-right text-danger">
+                                            <span id="Span5" runat="server"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <div id="container1"></div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <div id="container2" aria-disabled="True" aria-required="True"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">View Data</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="divDetails" style="overflow-x: scroll;"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
